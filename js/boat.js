@@ -8,7 +8,7 @@ var elapsedTime = 0;
 var totalTime = 0;
 var finishState = 'failure';
 
-var boatSpeed = 20;
+var boatSpeed = 10;
 
 function pixelsToCoords(x,y){
 var originPixels = [49,545];
