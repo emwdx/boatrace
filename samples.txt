@@ -1,0 +1,11 @@
+var testBearings = [
+[102, 29],
+[67, 63],
+[31, 108],
+[50, 127],
+[63, 198],
+[81, 259],
+[80,267]
+]
+
+bearings = [{index:0,distance:102,bearing:29},{index:1,distance:67,bearing:63},{index:2,distance:50,bearing:108},{index:3,distance:70,bearing:130},{index:4,distance:150,bearing:250},{index:5,distance:70,bearing:265}];

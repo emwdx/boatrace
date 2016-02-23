@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Boat Race</title>
+        <script type="text/javascript" src="js/raphael-min.js"></script>
+
+        <script src = "js/jquery-2.1.1.min.js"></script>
+        <script src = "js/lodash.compat.js"></script>
+
+        <link rel = "stylesheet" href = "bootstrap/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "boat.css">
+
+
+        <script type="text/spacebars" name="main">
+        {{>mapDisplay}}
+        {{>panel}}
+        </script>
+
+        <script type = "text/spacebars" name = "mapDisplay">
+        <div class = "row">
+        <div class = "col-md-8 col-md-offset-2"><h2>Boat Race</h2>
+        </div>
+        </div>
+        <div class = "row">
+        <div class = "col-md-8 col-md-offset-2">
+        Your task is as follows:
+        <ul>
+        <li>Design a course that moves clockwise around the island, around the outside of point B, and back to the starting point at A.</li>
+        <li>Enter the distance and the bearing, measured in degrees from due North, which is zero degrees.</li>
+        <li>Try to complete the journey in the shortest time possible. The elapsed time during the journey will be shown on the screen.</li>
+        <li>Crashing into the island will stop your time.</li>
+        </ul>
+        </div>
+        </div>
+        <div class = "row">
+
+        <div class = "col-md-12" id = "map">
+          <div id="mainDisplay"></div>
+        </div>
+        </div>
+
+
+
+        </script>
+
+        <script type = "text/spacebars" name = "panel">
+
+        <div id = "panel">
+        <div class = "row">
+            <div class = "col-md-6 col-md-offset-3 text-center" >
+              Enter the information for each segment of the journey around the island below.
+            </div>
+            </div>
+        <div id = "bearings">
+        <div class = "row">
+        <div class = "col-md-4 col-md-offset-4 text-center" >
+          <button id = "addSegment" class = "btn btn-primary">Add Segment</button>
+          <button id = "setSail" class = "btn btn-danger">Set Sail!</button>
+        </div>
+
+        </div>
+
+        {{#each bearings}}
+        <hr>
+        <div class = "row bearingEntry">
+        <div class = "col-md-2 text-right">
+        <button class = "btn deleteSegment"><span class = "glyphicon glyphicon-trash"></span></button>
+        </div>
+        <div class = "col-md-4">
+          Distance in kilometers: <input type = "number" class = "bearingDistance form-control" value = "{{this.distance}}"></div>
+          <div class = "col-md-4">
+          Angle from North in degrees: <input type = "number" class = "bearingAngle form-control" value = "{{this.bearing}}"></div>
+        </div>
+
+        {{/each}}
+
+        </div>
+        </div>
+        </script>
+        <script src="js/blaze.js"></script>
+        <script src = "js/templates.js"></script>
+
+    </head>
+    <body>
+
+
+
+    </body>
+</html>
+
+<script type="text/javascript" src="js/boat.js"></script>
+<script>
+$(document).ready(function(){
+
+  var pathPoints = [
+  [0,0],
+  [50,90],
+  [110,120],
+  [140,110],
+  [180,80],
+  [160,20],
+  [80,5],
+  [0,0]
+  ]
+
+
+      paper = new Raphael(document.getElementById('mainDisplay'), 1170, 587);
+
+
+      var map = paper.image("img/boat-race.tif",0,0,1170,587);
+      island = paper.path("M400,174 L438,152 L451,145 L463,131 L491,138 L500,130 L506,110 L513,103 L523,103 L544,90 L569,82 L579,87 L603,121 L596,132 L584,177 L568,221 L569,256 L576,252 L589,260 L585,296 L576,309 L563,307 L537,353 L511,394 L506,408 L497,393 L503,372 L492,363 L461,370 L432,397 L417,437 L399,486 L384,501 L359,504 L341,490 L345,471 L330,452 L307,447 L292,435 L285,419 L272,415 L256,438 L250,463 L241,498 L230,480 L232,435 L224,417 L237,380 L259,342 L272,307 L284,298 L294,269 L302,237 L307,217 L363,201 L392,193 Z").attr({"stroke":"none"});
+
+      currentTime = paper.text(100,50,"0.0 seconds").attr({"font-size":30,"fill":"white","text-anchor":"start"});
+      currentTime.hide();
+      var origin = coordsToPixels(0,0);
+      target = paper.circle(origin[0],origin[1],15);
+
+})
+
+</script>

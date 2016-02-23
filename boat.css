@@ -1,0 +1,30 @@
+#mainDisplay{
+width: 1187px;
+border: 10px solid black;
+border-radius:10px;
+margin-left:auto;
+margin-right:auto
+}
+
+#addSegment{
+
+margin:10px;
+
+}
+
+#panel{
+
+background-color:#ccc;
+border: solid black 1px;
+margin:10px;
+padding:10px;
+
+
+}
+
+.addBearing{
+
+border-top: 1px red solid;
+
+
+}
