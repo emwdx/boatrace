@@ -113,7 +113,7 @@ $(document).ready(function(){
       paper = new Raphael(document.getElementById('mainDisplay'), 1170, 587);
 
 
-      var map = paper.image("img/boat-race.tif",0,0,1170,587);
+      var map = paper.image("img/boat-race.jpg",0,0,1170,587);
       island = paper.path("M400,174 L438,152 L451,145 L463,131 L491,138 L500,130 L506,110 L513,103 L523,103 L544,90 L569,82 L579,87 L603,121 L596,132 L584,177 L568,221 L569,256 L576,252 L589,260 L585,296 L576,309 L563,307 L537,353 L511,394 L506,408 L497,393 L503,372 L492,363 L461,370 L432,397 L417,437 L399,486 L384,501 L359,504 L341,490 L345,471 L330,452 L307,447 L292,435 L285,419 L272,415 L256,438 L250,463 L241,498 L230,480 L232,435 L224,417 L237,380 L259,342 L272,307 L284,298 L294,269 L302,237 L307,217 L363,201 L392,193 Z").attr({"stroke":"none"});
 
       currentTime = paper.text(100,50,"0.0 seconds").attr({"font-size":30,"fill":"white","text-anchor":"start"});
