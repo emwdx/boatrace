@@ -3,7 +3,7 @@
 bearings = [{index:0,distance:20,bearing:30}];
 reactiveBearings = new ReactiveVar(bearings);
 var hasCrashed = new ReactiveVar(false);
-
+var boatsMoving = new ReactiveVar(false);
 
 
 Template.panel.helpers({
@@ -11,7 +11,12 @@ Template.panel.helpers({
 bearings: function(){return reactiveBearings.get()},
 index: function(){return this.index+1},
 hasCrashed:function(){
-return hasCrashed.get()}
+return hasCrashed.get()},
+boatsMoving: function(){
+
+return boatsMoving.get();
+
+}
 })
 
 Template.panel.events({
@@ -22,7 +27,7 @@ insertNewBearing({distance:10,bearing:20,index: reactiveBearings.get().length});
 
 },
 'click #setSail':function(e){
-
+boatsMoving.set(true);
 plotPath();
 
 },
@@ -35,6 +40,19 @@ console.log(segments);
 
 reactiveBearings.set([].concat(segments));
 }
+},
+
+'click #resetTrip':function(e){
+
+clearLines();
+clearBoats();
+clearDots();
+
+clearInterval(crashMonitor);
+clearInterval(timeMonitor);
+clearInterval(finishMonitor);
+
+boatsMoving.set(false)
 }
 })
 

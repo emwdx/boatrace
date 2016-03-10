@@ -190,7 +190,7 @@ function plotPath(){
     var finalDistance = Math.sqrt(sailCoords[sailCoords.length - 1][0]*sailCoords[sailCoords.length - 1][0] + sailCoords[sailCoords.length - 1][1]*sailCoords[sailCoords.length - 1][1]);
 
 
-    var crashMonitor = setInterval(function(){
+    crashMonitor = setInterval(function(){
 
       if(boats.length>0){
 
@@ -211,7 +211,7 @@ function plotPath(){
 
 
 
-      var finishMonitor = setInterval(function(){
+      finishMonitor = setInterval(function(){
           if(boats.length>0){
 
                boats.forEach(function(boat){
@@ -220,6 +220,7 @@ function plotPath(){
                  if(target.isPointInside(boat.attrs.cx,boat.attrs.cy)&&elapsedTime>10){
 
                    lines[i-1].show();
+                   processResults(sailBearings);
                    alert("You did it! Can you do it again in less time?")
                    clearInterval(crashMonitor);
                    clearInterval(timeMonitor);
@@ -336,5 +337,21 @@ function boatHasCrashed(){
 alert('Your boat crashed into the island!');
 
 clearBoats();
+
+}
+
+var processResults = function(results){
+
+var resultsObject = {bearings:results};
+data = JSON.stringify(resultsObject);
+console.log(data);
+
+var request = new XMLHttpRequest();
+request.open("POST", 'http://apps.evanweinberg.org/boat-race/');
+request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+request.send(data);
+
+
+
 
 }
