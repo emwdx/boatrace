@@ -8,7 +8,7 @@ var elapsedTime = 0;
 var totalTime = 0;
 var finishState = 'failure';
 
-var boatSpeed = 10;
+
 
 function pixelsToCoords(x,y){
 var originPixels = [49,545];
@@ -154,6 +154,8 @@ lines = [];
 function plotPath(){
   i = 0;
   elapsedTime = 0;
+
+  var boatSpeed = 10;
   clearDots();
   clearBoats();
   clearLines();
@@ -291,7 +293,7 @@ function plotPath(){
 
 function animateBoats(){
 
-
+  var boatSpeed = 10;
    if(i>0 && i <sailCoords.length-1){
    boats[i-1].remove();
 
@@ -342,7 +344,7 @@ clearBoats();
 
 var processResults = function(bearings,finishTime){
 
-var resultsObject = {bearings:bearings,finishTime:};
+var resultsObject = {bearings:bearings,finishTime:finishTime};
 data = JSON.stringify(resultsObject);
 console.log(data);
 
