@@ -220,7 +220,7 @@ function plotPath(){
                  if(target.isPointInside(boat.attrs.cx,boat.attrs.cy)&&elapsedTime>10){
 
                    lines[i-1].show();
-                   processResults(sailBearings);
+                   processResults(sailBearings,travelTime);
                    alert("You did it! Can you do it again in less time?")
                    clearInterval(crashMonitor);
                    clearInterval(timeMonitor);
@@ -340,9 +340,9 @@ clearBoats();
 
 }
 
-var processResults = function(results){
+var processResults = function(bearings,finishTime){
 
-var resultsObject = {bearings:results};
+var resultsObject = {bearings:bearings,finishTime:};
 data = JSON.stringify(resultsObject);
 console.log(data);
 
